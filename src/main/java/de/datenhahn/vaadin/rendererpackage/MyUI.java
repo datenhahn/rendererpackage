@@ -11,6 +11,8 @@ import com.vaadin.ui.*;
 
 import javax.servlet.annotation.WebServlet;
 
+import static com.google.gwt.thirdparty.guava.common.collect.Lists.newArrayList;
+
 /**
  *
  */
@@ -21,6 +23,7 @@ public class MyUI extends UI {
 
     private HorizontalLayout createDemoLayout(String text) {
         HorizontalLayout layout = new HorizontalLayout();
+        layout.setSpacing(true);
         layout.addComponent(new Label(FontAwesome.SMILE_O.getHtml(), ContentMode.HTML));
 
         Label label = new Label(text);
@@ -40,6 +43,8 @@ public class MyUI extends UI {
 
         Grid myGrid = new Grid();
 
+        myGrid.setWidth(100,Unit.PERCENTAGE);
+
         myGrid.addColumn("foo");
         myGrid.addColumn("bar", Component.class).setRenderer(new ComponentRenderer());
         myGrid.addColumn("bar2", Component.class).setRenderer(new ComponentRenderer());
@@ -48,8 +53,8 @@ public class MyUI extends UI {
 
 
 
-        for (int i = 0; i < 30000; i++) {
-            myGrid.addRow("test", createDemoLayout("1 - " +i),createDemoLayout("2 - " +i), createDemoLayout("3 - " +i));
+        for (int i = 0; i < 100000; i++) {
+            myGrid.addRow("test", createDemoLayout("1 - " +i),createDemoLayout("2 - " +i),new ComboBox("", newArrayList("foo","bar")));
         }
 
         layout.addComponent(myGrid);
