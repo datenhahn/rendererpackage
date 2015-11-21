@@ -36,7 +36,6 @@ public class ComponentRendererConnector extends AbstractRendererConnector<Compon
     @Override
     public ComponentRenderer getRenderer() {
         ComponentRenderer renderer = (ComponentRenderer) super.getRenderer();
-        renderer.setGridConnector(getParent());
         return renderer;
     }
 

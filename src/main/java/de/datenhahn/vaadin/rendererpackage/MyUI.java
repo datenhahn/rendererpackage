@@ -18,6 +18,19 @@ import javax.servlet.annotation.WebServlet;
 @Widgetset("de.datenhahn.vaadin.rendererpackage.MyAppWidgetset")
 public class MyUI extends UI {
 
+
+    private HorizontalLayout createDemoLayout(String text) {
+        HorizontalLayout layout = new HorizontalLayout();
+        layout.addComponent(new Label(FontAwesome.SMILE_O.getHtml(), ContentMode.HTML));
+
+        Label label = new Label(text);
+        label.setDescription(text);
+
+        layout.addComponent(label);
+
+        return layout;
+    }
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         final VerticalLayout layout = new VerticalLayout();
@@ -29,19 +42,16 @@ public class MyUI extends UI {
 
         myGrid.addColumn("foo");
         myGrid.addColumn("bar", Component.class).setRenderer(new ComponentRenderer());
+        myGrid.addColumn("bar2", Component.class).setRenderer(new ComponentRenderer());
+        myGrid.addColumn("bar3", Component.class).setRenderer(new ComponentRenderer());
 
 
 
-        for (int i = 0; i < 100000; i++) {
-            HorizontalLayout myLayout = new HorizontalLayout();
-            Label label = new Label("Hello Component " + i);
-            label.setDescription("Hello again");
-            myLayout.addComponent(new Label(FontAwesome.SMILE_O.getHtml(), ContentMode.HTML));
-            myLayout.addComponent(label);
-            myGrid.addRow("test", myLayout);
+
+        for (int i = 0; i < 30000; i++) {
+            myGrid.addRow("test", createDemoLayout("1 - " +i),createDemoLayout("2 - " +i), createDemoLayout("3 - " +i));
         }
 
-        layout.addComponent(new Label("foo"));
         layout.addComponent(myGrid);
 
 
