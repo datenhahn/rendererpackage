@@ -18,6 +18,7 @@ package de.datenhahn.vaadin.rendererpackage.client;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.vaadin.client.ComponentConnector;
+import com.vaadin.client.ServerConnector;
 import com.vaadin.client.renderers.WidgetRenderer;
 import com.vaadin.client.widget.grid.RendererCellReference;
 
@@ -31,6 +32,8 @@ import com.vaadin.client.widget.grid.RendererCellReference;
  */
 public class ComponentRenderer extends WidgetRenderer<ComponentConnector, SimplePanel> {
 
+    private ServerConnector gridConnector;
+
     @Override
     public SimplePanel createWidget() {
 
@@ -41,5 +44,9 @@ public class ComponentRenderer extends WidgetRenderer<ComponentConnector, Simple
     @Override
     public void render(RendererCellReference rendererCellReference, ComponentConnector componentConnector, SimplePanel widgets) {
         widgets.setWidget(componentConnector.getWidget());
+    }
+
+    public void setGridConnector(ServerConnector gridConnector) {
+        this.gridConnector = gridConnector;
     }
 }

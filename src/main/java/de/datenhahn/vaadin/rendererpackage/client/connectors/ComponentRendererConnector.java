@@ -36,12 +36,12 @@ public class ComponentRendererConnector extends AbstractRendererConnector<Compon
     @Override
     public ComponentRenderer getRenderer() {
         ComponentRenderer renderer = (ComponentRenderer) super.getRenderer();
+        renderer.setGridConnector(getParent());
         return renderer;
     }
 
     public ComponentConnector decode(JsonValue value) {
         ServerConnector decodedValue = ConnectorMap.get(getConnection()).getConnector(value.toString());
-        decodedValue.setParent(getParent());
         return (ComponentConnector) decodedValue;
     }
 }

@@ -3,13 +3,13 @@ package de.datenhahn.vaadin.rendererpackage;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
 
 import javax.servlet.annotation.WebServlet;
-
-import static com.google.gwt.thirdparty.guava.common.collect.Lists.newArrayList;
 
 /**
  *
@@ -32,13 +32,16 @@ public class MyUI extends UI {
 
 
 
-        for (int i = 0; i < 10000; i++) {
-            ComboBox myCombo = new ComboBox("", newArrayList("foo", "bar", "and", "more"));
-
-
-            myGrid.addRow("test", myCombo);
+        for (int i = 0; i < 100000; i++) {
+            HorizontalLayout myLayout = new HorizontalLayout();
+            Label label = new Label("Hello Component " + i);
+            label.setDescription("Hello again");
+            myLayout.addComponent(new Label(FontAwesome.SMILE_O.getHtml(), ContentMode.HTML));
+            myLayout.addComponent(label);
+            myGrid.addRow("test", myLayout);
         }
 
+        layout.addComponent(new Label("foo"));
         layout.addComponent(myGrid);
 
 

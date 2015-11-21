@@ -37,7 +37,7 @@ public class ComponentRenderer extends Grid.AbstractRenderer<Component> {
     public ComponentRenderer() {
         super(Component.class, null);
     }
-    
+
     @Override
     public JsonValue encode(Component component) {
         component.setParent(getParentGrid());
